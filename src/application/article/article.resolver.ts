@@ -9,6 +9,11 @@ export class ArticleResolver {
 
   @Query()
   article(@Args('id') id: number) {
-    return this.repository.findOne(id);
+    return this.repository.findOneOrFail(id);
+  }
+
+  @Query()
+  articles() {
+    return this.repository.find();
   }
 }
