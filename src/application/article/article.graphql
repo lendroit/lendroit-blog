@@ -1,0 +1,9 @@
+type Article {
+  id: Int!
+  name: String
+  isPublished: Boolean
+}
+
+type Query {
+  article(id: Int!): Article
+}

@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ArticleModule } from './application/article/article.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
@@ -15,6 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'lendroit-blog',
       entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
       synchronize: true,
+    }),
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
     }),
     ArticleModule,
   ],

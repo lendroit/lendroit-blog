@@ -6,11 +6,12 @@ import { CreateArticleHandler } from './commands/handlers/create-article.handler
 import { ModuleRef } from '@nestjs/core';
 import { Article } from './article.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ArticleResolver } from './article.resolver';
 
 @Module({
   imports: [CQRSModule, TypeOrmModule.forFeature([Article])],
   controllers: [ArticleController],
-  providers: [ArticleService, CreateArticleHandler],
+  providers: [ArticleService, CreateArticleHandler, ArticleResolver],
 })
 export class ArticleModule implements OnModuleInit {
   constructor(private readonly commandBus$: CommandBus, private readonly moduleRef: ModuleRef) {}
