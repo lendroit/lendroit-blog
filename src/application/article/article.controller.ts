@@ -13,6 +13,6 @@ export class ArticleController {
 
   @Post()
   async createArticle(@Body() createArticleDto: CreateArticleDto) {
-    await this.articleService.createArticle(createArticleDto);
+    return await this.articleService.createArticle(createArticleDto);
   }
 }

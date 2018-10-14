@@ -10,9 +10,9 @@ export class CreateArticleHandler implements ICommandHandler<CreateArticleComman
 
   async execute(command: CreateArticleCommand, resolve: (value?) => void) {
     const article = new Article();
-    article.name = 'Yolo larticle';
+    article.name = command.articleName;
     article.isPublished = false;
     const storedArticle = await this.repository.save(article);
-    resolve();
+    resolve(storedArticle);
   }
 }
