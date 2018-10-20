@@ -7,16 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'sammyt',
-      password: 'root',
-      database: 'lendroit-blog',
-      entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(),
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
     }),
