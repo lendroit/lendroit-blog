@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { ArticleController } from './article.controller';
 import { ArticleService } from './article.service';
-import { CommandBus, CQRSModule } from '@nestjs/cqrs';
+import { CQRSModule } from '@nestjs/cqrs';
 
 describe('Article controller', () => {
   let articleService: ArticleService;
@@ -21,7 +21,6 @@ describe('Article controller', () => {
     it('should return an article', async () => {
       const result = 'Un article';
       jest.spyOn(articleService, 'root').mockImplementation(() => result);
-
       expect(await articleController.root()).toBe(result);
     });
   });
