@@ -10,5 +10,9 @@ module.exports = {
   type: 'postgres',
   entities: [__dirname + '/**/*.entity.' + entitiesExtension],
   url: process.env.DATABASE_URL,
-  synchronize: true,
+  synchronize: false,
+  migrations: [migrationsDir],
+  cli: {
+    migrationsDir: 'src/migration',
+  },
 };
