@@ -10,8 +10,10 @@ export class CreateArticleHandler implements ICommandHandler<CreateArticleComman
 
   async execute(command: CreateArticleCommand, resolve: (value?) => void) {
     const article = new Article();
-    article.name = command.articleName;
+    article.name = command.newArticle.name;
+    article.content = command.newArticle.content;
     article.isPublished = false;
+    article.createdAt = new Date();
     const storedArticle = await this.repository.save(article);
     resolve(storedArticle);
   }

@@ -9,7 +9,7 @@ export class ArticleService {
   constructor(private readonly commandBus: CommandBus) {}
 
   async createArticle(createArticleDto: CreateArticleDto) {
-    return await this.commandBus.execute(new CreateArticleCommand(createArticleDto.name));
+    return await this.commandBus.execute(new CreateArticleCommand(createArticleDto));
   }
 
   root() {
