@@ -10,3 +10,8 @@ type Query {
   article(id: Int!): Article
   articles: [Article]
 }
+
+type Mutation {
+  createArticle(name: String!, content: String!): Article
+  updateArticle(id: Int!, name: String!, content: String!): Article
+}
