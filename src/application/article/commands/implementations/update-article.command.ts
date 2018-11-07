@@ -1,5 +1,5 @@
 import { ICommand } from '@nestjs/cqrs';
-import { ArticleDto } from '../../interfaces/create-article.dto';
+import { ArticleDto } from '../../interfaces/article.dto';
 import { Article } from 'application/article/article.entity';
 
 export class UpdateArticleCommand implements ICommand {

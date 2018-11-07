@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 
-import { ArticleDto } from './interfaces/create-article.dto';
+import { ArticleDto } from './interfaces/article.dto';
 import { CreateArticleCommand } from './commands/implementations/create-article.command';
 import { UpdateArticleCommand } from './commands/implementations/update-article.command';
 import { Article } from './article.entity';

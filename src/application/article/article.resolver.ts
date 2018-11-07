@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { Article } from './article.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ArticleService } from './article.service';
-import { ArticleDto } from './interfaces/create-article.dto';
+import { ArticleDto } from './interfaces/article.dto';
 
 @Resolver('Article')
 export class ArticleResolver {
