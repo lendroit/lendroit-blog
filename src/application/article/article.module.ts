@@ -7,9 +7,10 @@ import { ModuleRef } from '@nestjs/core';
 import { Article } from './article.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleResolver } from './article.resolver';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 @Module({
-  imports: [CQRSModule, TypeOrmModule.forFeature([Article])],
+  imports: [CQRSModule, TypeOrmModule.forFeature([Article]), AuthenticationModule],
   controllers: [ArticleController],
   providers: [ArticleService, ...handlersList, ArticleResolver],
 })

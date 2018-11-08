@@ -10,4 +10,7 @@ export class UserService {
   createUser(newUser: UserDTO) {
     return this.userRepository.save(newUser);
   }
+  findUser(name: string, password: string): Promise<User> {
+    return this.userRepository.findOneOrFail({ name, password });
+  }
 }
