@@ -19,11 +19,12 @@
     "no-empty": false,
     "arrow-parens": false,
     "object-literal-sort-keys": false,
-    "no-unused-expression": false,
     "max-classes-per-file": [false, 1],
     "variable-name": [false],
     "one-line": [false],
-    "one-variable-per-declaration": [false]
+    "one-variable-per-declaration": [false],
+    "no-unused-expression": { "severity": "warning" },
+    "no-unused-variable": { "severity": "warning" }
   },
   "rulesDirectory": []
 }

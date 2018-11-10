@@ -1,5 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
-import { truncateSync } from 'fs';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateArticle1541337738225 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
