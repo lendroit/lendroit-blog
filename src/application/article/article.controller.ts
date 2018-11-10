@@ -1,7 +1,7 @@
 import { Get, Post, Body, Controller, Patch, Param, UseGuards } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { ArticleDto } from './interfaces/article.dto';
-import { AuthenticationGuard } from '../authentication/authentication.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('article')
 export class ArticleController {
@@ -13,13 +13,13 @@ export class ArticleController {
   }
 
   @Post()
-  @UseGuards(AuthenticationGuard)
+  @UseGuards(AuthGuard('basic'))
   async createArticle(@Body() createArticleDto: ArticleDto) {
     return await this.articleService.createArticle(createArticleDto);
   }
 
   @Patch('/:id')
-  @UseGuards(AuthenticationGuard)
+  @UseGuards(AuthGuard('basic'))
   async updateArticle(@Body() updateArticleDto: ArticleDto, @Param() params) {
     return await this.articleService.updateArticle(params.id, updateArticleDto);
   }

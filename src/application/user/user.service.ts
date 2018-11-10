@@ -11,6 +11,6 @@ export class UserService {
     return this.userRepository.save(newUser);
   }
   findUser(name: string, password: string): Promise<User> {
-    return this.userRepository.findOneOrFail({ name, password });
+    return this.userRepository.findOne({ name, password });
   }
 }
