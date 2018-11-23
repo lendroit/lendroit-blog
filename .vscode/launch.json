@@ -10,7 +10,8 @@
       "name": "Attach",
       "port": 9229,
       "timeout": 10000,
-      "stopOnEntry": false
+      "stopOnEntry": false,
+      "restart": true
     }
   ]
 }
