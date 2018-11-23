@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { ArticlePublishedEvent } from './events/article-published';
 
 @Entity()
-export class Article {
+export class Article extends AggregateRoot {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,4 +27,10 @@ export class Article {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  publishArticle() {
+    this.isPublished = !this.isPublished;
+    this.apply(new ArticlePublishedEvent(this.id));
+    return this;
+  }
 }

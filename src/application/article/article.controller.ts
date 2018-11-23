@@ -23,4 +23,10 @@ export class ArticleController {
   async updateArticle(@Body() updateArticleDto: ArticleDto, @Param() params) {
     return await this.articleService.updateArticle(params.id, updateArticleDto);
   }
+
+  @Patch('/publish/:id')
+  @UseGuards(AuthGuard('basic'))
+  async publishArticle(@Param() params) {
+    return await this.articleService.publishArticle(params.id);
+  }
 }
