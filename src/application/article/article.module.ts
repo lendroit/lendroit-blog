@@ -9,9 +9,10 @@ import { Article } from './article.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleResolver } from './article.resolver';
 import { AuthenticationModule } from '../authentication/authentication.module';
+import { EventModule } from '../infrastructure/event/event.module';
 
 @Module({
-  imports: [CQRSModule, TypeOrmModule.forFeature([Article]), AuthenticationModule],
+  imports: [CQRSModule, EventModule, TypeOrmModule.forFeature([Article]), AuthenticationModule],
   controllers: [ArticleController],
   providers: [ArticleService, ...commandHandlers, ...eventHandlers, ArticleResolver],
 })
