@@ -1,19 +1,9 @@
 import { IEvent } from '@nestjs/cqrs';
+import { ArticleCreated as ArticleCreatedImplementation } from './article-created.event';
+import { ArticlePublished as ArticlePublishedImplementation } from './article-published';
 
 export namespace ArticleEvents {
-  export class ArticleCreated implements IEvent {
-    constructor({ id, name, content }: { id: number; name: string; content: string }) {
-      this.id = id;
-      this.name = name;
-      this.content = content;
-    }
-    // rename to aggregate id
-    id: number;
-    name: string;
-    content: string;
-  }
+  export class ArticleCreated extends ArticleCreatedImplementation {}
 
-  export class ArticlePublished implements IEvent {
-    constructor(public readonly id: number) {}
-  }
+  export class ArticlePublished extends ArticlePublishedImplementation {}
 }
