@@ -4,11 +4,13 @@ import { Event } from '../infrastructure/event/event.entity';
 import { Article } from './article.entity';
 import { Injectable } from '@nestjs/common';
 import { eventList } from './events';
+import { ArticleEvents } from './events/namespace';
 
 const recreateEvent = (event: Event) => {
-  const constructor = eventList[0];
   const payload = event.payload;
-  const articleEvent = new constructor(payload.id, payload.name, payload.content);
+  // handle if event is not in the namespace
+
+  const articleEvent = new (ArticleEvents as any)[event.className](payload);
   return articleEvent;
 };
 

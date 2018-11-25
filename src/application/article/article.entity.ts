@@ -36,7 +36,7 @@ export class Article extends AggregateRoot {
   }
 
   createArticle(name: string, content: string) {
-    const articleCreatedEvent = new ArticleCreated(this.id, name, content);
+    const articleCreatedEvent = new ArticleCreated({ id: this.id, name, content });
     this.apply(articleCreatedEvent);
   }
 

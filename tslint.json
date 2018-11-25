@@ -24,7 +24,8 @@
     "one-line": [false],
     "one-variable-per-declaration": [false],
     "no-unused-expression": { "severity": "warning" },
-    "no-unused-variable": { "severity": "warning" }
+    "no-unused-variable": { "severity": "warning" },
+    "no-namespace": false
   },
   "rulesDirectory": []
 }

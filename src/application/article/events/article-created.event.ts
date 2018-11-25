@@ -1,7 +1,7 @@
 import { IEvent } from '@nestjs/cqrs';
 
 export class ArticleCreated implements IEvent {
-  constructor(id: number, name: string, content: string) {
+  constructor({ id, name, content }: { id: number; name: string; content: string }) {
     this.id = id;
     this.name = name;
     this.content = content;
