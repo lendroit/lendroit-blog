@@ -19,7 +19,7 @@ export class CreateArticleHandler implements ICommandHandler<CreateArticleComman
     article.createdAt = new Date();
     const storedArticle = await this.repository.save(article);
     // Event sourcing
-    const articleObject = this.publisher.mergeObjectContext(article);
+    const articleObject = article;
     articleObject.createArticle(command.newArticle.name, command.newArticle.content);
     articleObject.commit();
     resolve(storedArticle);
