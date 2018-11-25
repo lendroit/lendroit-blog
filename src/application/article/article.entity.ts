@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { ArticlePublishedEvent } from './events/article-published';
-import { ArticleCreatedEvent } from './events/article-created.event';
+import { ArticlePublished } from './events/article-published';
+import { ArticleCreated } from './events/article-created.event';
 
 @Entity()
 export class Article extends AggregateRoot {
@@ -31,12 +31,17 @@ export class Article extends AggregateRoot {
 
   publishArticle() {
     this.isPublished = !this.isPublished;
-    this.apply(new ArticlePublishedEvent(this.id));
+    this.apply(new ArticlePublished(this.id));
     return this;
   }
 
   createArticle(name: string, content: string) {
-    const articleCreatedEvent = new ArticleCreatedEvent(this.id, name, content);
+    const articleCreatedEvent = new ArticleCreated(this.id, name, content);
     this.apply(articleCreatedEvent);
+  }
+
+  onArticleCreated(event: ArticleCreated) {
+    this.name = event.name;
+    this.content = event.content;
   }
 }

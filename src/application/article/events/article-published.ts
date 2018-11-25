@@ -1,5 +1,5 @@
 import { IEvent } from '@nestjs/cqrs';
 
-export class ArticlePublishedEvent implements IEvent {
+export class ArticlePublished implements IEvent {
   constructor(public readonly id: number) {}
 }

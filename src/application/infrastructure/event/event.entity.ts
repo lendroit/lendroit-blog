@@ -16,7 +16,10 @@ export class Event {
   aggregateId: number;
 
   @Column('json')
-  payload: JSON;
+  payload: any;
+
+  @Column()
+  className: string;
 
   // All the following properties are to ensure events are not mutated
   @CreateDateColumn()

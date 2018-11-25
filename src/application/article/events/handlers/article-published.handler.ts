@@ -1,17 +1,17 @@
 import { EventsHandler, IEventHandler, EventPublisher } from '@nestjs/cqrs';
-import { ArticlePublishedEvent } from '../article-published';
+import { ArticlePublished } from '../article-published';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Article } from '../../article.entity';
 import { Repository } from 'typeorm';
 
-@EventsHandler(ArticlePublishedEvent)
-export class ArticlePublishedHandler implements IEventHandler<ArticlePublishedEvent> {
+@EventsHandler(ArticlePublished)
+export class ArticlePublishedHandler implements IEventHandler<ArticlePublished> {
   constructor(
     @InjectRepository(Article) private readonly articleRepository: Repository<Article>,
     private readonly publisher: EventPublisher,
   ) {}
 
-  async handle(event: ArticlePublishedEvent) {
+  async handle(event: ArticlePublished) {
     return;
     // const article = this.publisher.mergeObjectContext(
     //   await this.articleRepository.findOne(event.id),
