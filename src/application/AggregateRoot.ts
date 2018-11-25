@@ -1,11 +1,11 @@
-import { AggregateRoot as RawAggregateRoot } from '@nestjs/cqrs';
+import { AggregateRoot as RawAggregateRoot, IEvent } from '@nestjs/cqrs';
 import { getRepository } from 'typeorm';
-import { Event } from './infrastructure/event/event.entity';
+import { Event } from '../infrastructure/event/event.entity';
 
 export class AggregateRoot extends RawAggregateRoot {
   id: number;
 
-  publish(event: Event) {
+  publish(event: IEvent) {
     // @todo implement a store event that adds the aggregateId and the classname
     const storedEvent = new Event();
     storedEvent.payload = event;

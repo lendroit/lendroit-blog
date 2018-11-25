@@ -9,7 +9,7 @@ import { Article } from './article.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleResolver } from './article.resolver';
 import { AuthenticationModule } from '../authentication/authentication.module';
-import { EventModule } from '../infrastructure/event/event.module';
+import { EventModule } from '../../infrastructure/event/event.module';
 import { ArticleCustomRepository } from './article.repository';
 
 @Module({
