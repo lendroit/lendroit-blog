@@ -12,6 +12,11 @@ export class ArticleController {
     return this.articleService.root();
   }
 
+  @Get('/:id')
+  async findById(@Param() params) {
+    return this.articleService.findById(params.id);
+  }
+
   @Post()
   @UseGuards(AuthGuard('basic'))
   async createArticle(@Body() createArticleDto: ArticleDto) {

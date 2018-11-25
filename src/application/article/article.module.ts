@@ -10,11 +10,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleResolver } from './article.resolver';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { EventModule } from '../infrastructure/event/event.module';
+import { ArticleCustomRepository } from './article.repository';
 
 @Module({
   imports: [CQRSModule, EventModule, TypeOrmModule.forFeature([Article]), AuthenticationModule],
   controllers: [ArticleController],
-  providers: [ArticleService, ...commandHandlers, ...eventHandlers, ArticleResolver],
+  providers: [
+    ArticleCustomRepository,
+    ArticleService,
+    ...commandHandlers,
+    ...eventHandlers,
+    ArticleResolver,
+  ],
 })
 export class ArticleModule implements OnModuleInit {
   constructor(
