@@ -8,11 +8,13 @@ import { ArticleEvents } from './events/namespace';
 
 const recreateEvent = (event: Event) => {
   const payload = event.payload;
-  // @todo handle if event is not in the namespace
   // @todo Add global linter for unused import and variables
-
-  const articleEvent = new (ArticleEvents as any)[event.className](payload);
-  return articleEvent;
+  try {
+    const articleEvent = new (ArticleEvents as any)[event.className](payload);
+    return articleEvent;
+  } catch (error) {
+    throw new Error('UNHANDLED_EVENT_RECONSTRUCTION');
+  }
 };
 
 @Injectable()
