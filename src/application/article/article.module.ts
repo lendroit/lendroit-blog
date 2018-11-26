@@ -10,9 +10,16 @@ import { ArticleResolver } from './article.resolver';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { EventModule } from '../../infrastructure/event/event.module';
 import { ArticleCustomRepository } from './article.repository';
+import { CatalogModule } from 'application/catalog/catalog.module';
 
 @Module({
-  imports: [CQRSModule, EventModule, TypeOrmModule.forFeature([Article]), AuthenticationModule],
+  imports: [
+    CQRSModule,
+    EventModule,
+    TypeOrmModule.forFeature([Article]),
+    AuthenticationModule,
+    CatalogModule,
+  ],
   controllers: [ArticleController],
   providers: [ArticleCustomRepository, ArticleService, ...commandHandlers, ArticleResolver],
 })

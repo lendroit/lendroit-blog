@@ -10,6 +10,7 @@ import { Catalog } from '../catalog/catalog.entity';
 export class ArticleResolver {
   constructor(
     @InjectRepository(Article) private readonly articleRepository: Repository<Article>,
+    @InjectRepository(Catalog) private readonly catalogRepository: Repository<Catalog>,
     private readonly articleService: ArticleService,
   ) {}
 
@@ -19,8 +20,10 @@ export class ArticleResolver {
   }
 
   @Query()
-  articles() {
-    return this.articleRepository.find();
+  async articles() {
+    const articleCatalog = await this.catalogRepository.findOne('article');
+    const articleIds = articleCatalog.ids;
+    return this.articleRepository.findByIds(articleIds);
   }
 
   @Mutation()
