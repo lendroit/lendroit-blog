@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { Event } from '../../infrastructure/event/event.entity';
 import { Article } from './article.entity';
 import { Injectable } from '@nestjs/common';
-import { eventList } from './events';
 import { ArticleEvents } from './events/namespace';
 
 const recreateEvent = (event: Event) => {
