@@ -4,10 +4,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  getRepository,
 } from 'typeorm';
 import { ArticlePublished } from './events/article-published';
 import { ArticleCreated } from './events/article-created.event';
 import { AggregateRoot } from '../AggregateRoot';
+import { Catalog } from '../catalog/catalog.entity';
 
 @Entity()
 export class Article extends AggregateRoot {
@@ -40,9 +42,16 @@ export class Article extends AggregateRoot {
     this.apply(articleCreatedEvent);
   }
 
-  onArticleCreated(event: ArticleCreated) {
+  async onArticleCreated(event: ArticleCreated) {
     this.id = event.id;
     this.name = event.name;
     this.content = event.content;
+    const catalogRepository = getRepository(Catalog);
+    const articleCatalog: Catalog = (await catalogRepository.findOne('article')) || {
+      entityName: 'article',
+      ids: [],
+    };
+    articleCatalog.ids.push(event.id);
+    catalogRepository.save(articleCatalog);
   }
 }
