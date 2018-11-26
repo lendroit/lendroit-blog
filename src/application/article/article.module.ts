@@ -10,7 +10,7 @@ import { ArticleResolver } from './article.resolver';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { EventModule } from '../../infrastructure/event/event.module';
 import { ArticleCustomRepository } from './article.repository';
-import { CatalogModule } from 'application/catalog/catalog.module';
+import { CatalogModule } from '../catalog/catalog.module';
 
 @Module({
   imports: [

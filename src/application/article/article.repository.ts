@@ -26,4 +26,9 @@ export class ArticleCustomRepository {
     article.loadFromHistory(articleHistoryEvents);
     return article;
   }
+
+  async findByIds(aggregateIds: Article['id'][]) {
+    const allPromises = aggregateIds.map(this.findById.bind(this));
+    return await Promise.all(allPromises);
+  }
 }

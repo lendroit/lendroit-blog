@@ -31,6 +31,10 @@ export class ArticleService {
     return this.articleRepository.findById(articleId);
   }
 
+  findByIds(articleIds: Article['id'][]) {
+    return this.articleRepository.findByIds(articleIds);
+  }
+
   root() {
     return 'Un article';
   }

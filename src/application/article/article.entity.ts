@@ -51,7 +51,9 @@ export class Article extends AggregateRoot {
       entityName: 'article',
       ids: [],
     };
-    articleCatalog.ids.push(event.id);
+    if (!articleCatalog.ids.find(id => id === event.id)) {
+      articleCatalog.ids.push(event.id);
+    }
     catalogRepository.save(articleCatalog);
   }
 }
