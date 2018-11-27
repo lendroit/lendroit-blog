@@ -7,7 +7,6 @@ import { ArticleEvents } from './events/namespace';
 
 const recreateEvent = (event: Event) => {
   const payload = event.payload;
-  // @todo Add global linter for unused import and variables
   try {
     const articleEvent = new (ArticleEvents as any)[event.className](payload);
     return articleEvent;
