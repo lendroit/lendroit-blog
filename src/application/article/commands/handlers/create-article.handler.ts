@@ -1,19 +1,27 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, ICommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { CreateArticleCommand } from '../implementations/create-article.command';
 import { Article } from '../../article.entity';
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Catalog } from '../../../catalog/catalog.entity';
 
 @CommandHandler(CreateArticleCommand)
 export class CreateArticleHandler implements ICommandHandler<CreateArticleCommand> {
+  constructor(
+    private readonly publisher: EventPublisher,
+    @InjectRepository(Catalog) private readonly catalogRepository: Repository<Catalog>,
+  ) {}
   async execute(command: CreateArticleCommand, resolve: (value?) => void) {
+    const articleIds: Article['id'][] = (await this.catalogRepository.findOne('article')).ids;
+    const articleId: Article['id'] = Math.max(...articleIds) + 1;
     const article = new Article();
-    // TODO remove all this shit, handle the id creation myself
     article.name = command.newArticle.name;
     article.content = command.newArticle.content;
+    article.id = articleId;
     article.isPublished = false;
-    const articleWithID = await getRepository(Article).save(article);
-    articleWithID.createArticle(command.newArticle.name, command.newArticle.content);
-    articleWithID.commit();
-    resolve(article);
+    const articleWithPublisher = this.publisher.mergeObjectContext(article);
+    articleWithPublisher.createArticle(command.newArticle.name, command.newArticle.content);
+    articleWithPublisher.commit();
+    resolve(articleWithPublisher);
   }
 }
