@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './application/user/user.module';
 import { AuthenticationModule } from './application/authentication/authentication.module';
+import { LifestyleModule } from './application/lifestyle/lifestyle.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthenticationModule } from './application/authentication/authenticatio
     UserModule,
     AuthenticationModule,
     ArticleModule,
+    LifestyleModule,
   ],
 })
 export class AppModule {}
