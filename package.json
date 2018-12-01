@@ -27,7 +27,8 @@
     "schema:log": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm schema:log",
     "migration:create": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm migration:create",
     "migration:generate": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm migration:generate",
-    "migration:run": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm migration:run"
+    "migration:run": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm migration:run",
+    "migration:revert": "node_modules/ts-node/dist/bin.js node_modules/.bin/typeorm migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^5.1.0",

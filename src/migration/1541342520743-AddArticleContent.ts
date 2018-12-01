@@ -27,7 +27,7 @@ export class AddArticleContent1541342520743 implements MigrationInterface {
       new TableColumn({
         name: 'content',
         type: 'character varying',
-        default: '\'NO_CONTENT\'',
+        default: "'NO_CONTENT'",
       }),
     );
   }

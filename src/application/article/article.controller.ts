@@ -12,6 +12,11 @@ export class ArticleController {
     return this.articleService.root();
   }
 
+  @Get('/:id')
+  async findById(@Param() params) {
+    return this.articleService.findById(params.id);
+  }
+
   @Post()
   @UseGuards(AuthGuard('basic'))
   async createArticle(@Body() createArticleDto: ArticleDto) {
@@ -22,5 +27,11 @@ export class ArticleController {
   @UseGuards(AuthGuard('basic'))
   async updateArticle(@Body() updateArticleDto: ArticleDto, @Param() params) {
     return await this.articleService.updateArticle(params.id, updateArticleDto);
+  }
+
+  @Patch('/publish/:id')
+  @UseGuards(AuthGuard('basic'))
+  async publishArticle(@Param() params) {
+    return await this.articleService.publishArticle(params.id);
   }
 }

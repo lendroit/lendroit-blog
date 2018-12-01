@@ -1,25 +1,27 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Repository } from 'typeorm';
-import { Article } from './article.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ArticleService } from './article.service';
 import { ArticleDto } from './interfaces/article.dto';
+import { Catalog } from '../catalog/catalog.entity';
 
 @Resolver('Article')
 export class ArticleResolver {
   constructor(
-    @InjectRepository(Article) private readonly repository: Repository<Article>,
+    @InjectRepository(Catalog) private readonly catalogRepository: Repository<Catalog>,
     private readonly articleService: ArticleService,
   ) {}
 
   @Query()
   article(@Args('id') id: number) {
-    return this.repository.findOneOrFail(id);
+    return this.articleService.findById(id);
   }
 
   @Query()
-  articles() {
-    return this.repository.find();
+  async articles() {
+    const articleCatalog = await this.catalogRepository.findOne('article');
+    const articleIds = articleCatalog.ids;
+    return this.articleService.findByIds(articleIds);
   }
 
   @Mutation()

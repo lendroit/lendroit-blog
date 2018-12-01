@@ -12,7 +12,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./src",
-    "lib": ["es2015", "dom", "esnext.asynciterable"]
+    "lib": ["es2015", "dom", "esnext.asynciterable"],
+    "noUnusedParameters": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
