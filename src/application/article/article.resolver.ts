@@ -4,17 +4,24 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ArticleService } from './article.service';
 import { ArticleDto } from './interfaces/article.dto';
 import { Catalog } from '../catalog/catalog.entity';
+import { Lifestyle } from '../lifestyle/lifestyle.entity';
 
 @Resolver('Article')
 export class ArticleResolver {
   constructor(
     @InjectRepository(Catalog) private readonly catalogRepository: Repository<Catalog>,
+    @InjectRepository(Lifestyle) private readonly lifestyleRepository: Repository<Lifestyle>,
     private readonly articleService: ArticleService,
   ) {}
 
   @Query()
   article(@Args('id') id: number) {
     return this.articleService.findById(id);
+  }
+
+  @Query()
+  async lifestyle() {
+    return this.lifestyleRepository.find();
   }
 
   @Query()

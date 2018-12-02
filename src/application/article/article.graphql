@@ -6,9 +6,16 @@ type Article {
   content: String
 }
 
+type Lifestyle {
+  uuid: String!
+  publicId: String
+  imageUrl: String
+}
+
 type Query {
   article(id: Int!): Article
   articles: [Article]
+  lifestyle: [Lifestyle]
 }
 
 type Mutation {
