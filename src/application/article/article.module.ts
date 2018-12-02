@@ -11,6 +11,7 @@ import { AuthenticationModule } from '../authentication/authentication.module';
 import { EventModule } from '../../infrastructure/event/event.module';
 import { ArticleCustomRepository } from './article.repository';
 import { CatalogModule } from '../catalog/catalog.module';
+import { LifestyleModule } from '../lifestyle/lifestyle.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CatalogModule } from '../catalog/catalog.module';
     TypeOrmModule.forFeature([Article]),
     AuthenticationModule,
     CatalogModule,
+    LifestyleModule,
   ],
   controllers: [ArticleController],
   providers: [ArticleCustomRepository, ArticleService, ...commandHandlers, ArticleResolver],
